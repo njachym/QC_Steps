@@ -1,0 +1,16 @@
+###filters out relevant populations and children from total data
+
+### Load dplyr
+library(dplyr)
+
+### Load relationship files from 1000 genomes
+df <- read.table("relationships_w_pops_121708.txt, header=TRUE")
+
+### Filter out relevant popluations
+Group_Data <- c("CHB","GIH","JPT","LWK","MEX","MKK","YRI")
+filter(df, population %in% Group_Data)
+
+### filter out the children
+filter(Group_Data, dad != "0" | mom != "0")
+
+### create files at desired steps
